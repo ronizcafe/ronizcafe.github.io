@@ -102,10 +102,10 @@
         font-size: 1.5rem;
       }
       .price-category {
-          display: flex;
-          flex-direction: column;
-          align-items: end;
-        }
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+      }
 
       footer {
         text-align: center;
@@ -114,6 +114,11 @@
         border-top: 2px dashed var(--accent);
         font-size: 0.9rem;
         color: #666;
+      }
+      .truncate {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       @media (max-width: 600px) {
@@ -145,6 +150,10 @@
           flex-direction: column;
           gap: 10px;
           margin-top: -7px;
+        }
+        .pizza-section-price {
+          display: flex;
+          justify-content: space-between;
         }
       }
     </style>
@@ -588,13 +597,13 @@
             <div class="item-name-amharic">ስፔሻል ፒዛ</div>
           </div>
           <div class="item-prices">
-            <div class="price-header">
-              <span class="price-column">Medium</span>
-              <span class="price-column">Large</span>
+            <div class="price-header pizza-section-price">
+              <div class="price-column truncate">Medium</div>
+              <div class="price-column truncate">Large</div>
             </div>
-            <div>
-              <span class="price-column">580</span>
-              <span class="price-column">600</span>
+            <div class="pizza-section-price">
+              <div class="price-column">580</div>
+              <div class="price-column">600</div>
             </div>
           </div>
         </div>
@@ -604,9 +613,9 @@
             Beef Pizza
             <div class="item-name-amharic">ቢፍ ፒዛ</div>
           </div>
-          <div class="item-prices">
-            <span class="price-column">530</span>
-            <span class="price-column">550</span>
+          <div class="item-prices pizza-section-price">
+            <div class="price-column">530</div>
+            <div class="price-column">550</div>
           </div>
         </div>
 
@@ -615,9 +624,9 @@
             Chicken Pizza
             <div class="item-name-amharic">ቺክን ፒዛ</div>
           </div>
-          <div class="item-prices">
-            <span class="price-column">550</span>
-            <span class="price-column">580</span>
+          <div class="item-prices pizza-section-price">
+            <div class="price-column">550</div>
+            <div class="price-column">580</div>
           </div>
         </div>
 
@@ -626,9 +635,9 @@
             Margarita Pizza
             <div class="item-name-amharic">ማርጋሪታ ፒዛ</div>
           </div>
-          <div class="item-prices">
-            <span class="price-column">500</span>
-            <span class="price-column">530</span>
+          <div class="item-prices pizza-section-price">
+            <div class="price-column">500</div>
+            <div class="price-column">530</div>
           </div>
         </div>
 
@@ -637,9 +646,9 @@
             Tuna Pizza
             <div class="item-name-amharic">ቱና ፒዛ</div>
           </div>
-          <div class="item-prices">
-            <span class="price-column">500</span>
-            <span class="price-column">530</span>
+          <div class="item-prices pizza-section-price">
+            <div class="price-column">500</div>
+            <div class="price-column">530</div>
           </div>
         </div>
 
@@ -648,9 +657,9 @@
             Veg Pizza
             <div class="item-name-amharic">አትክልት ፒዛ</div>
           </div>
-          <div class="item-prices">
-            <span class="price-column">380</span>
-            <span class="price-column">400</span>
+          <div class="item-prices pizza-section-price">
+            <div class="price-column">380</div>
+            <div class="price-column">400</div>
           </div>
         </div>
       </div>
@@ -902,16 +911,11 @@
           style="display: flex; justify-content: space-between"
         >
           <div class="item-name">Cheese</div>
-          <div
-            class="item-name-amharic category"
-          >
+          <div class="item-name-amharic category">
             <div>Half</div>
             <div>Full</div>
           </div>
-          <div
-            class="item-prices price-category"
-            
-          >
+          <div class="item-prices price-category">
             <div class="price-column">50</div>
             <div class="price-column">100</div>
           </div>
