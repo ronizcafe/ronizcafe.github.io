@@ -1,411 +1,969 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Roniz Cafe - Complete Menu</title>
     <style>
-        :root {
-            --primary: #8B4513; /* SaddleBrown */
-            --secondary: #D2B48C; /* Tan */
-            --accent: #A52A2A; /* Brown */
-            --light: #F5F5DC; /* Beige */
-            --text: #333;
+      :root {
+        --primary: #8b4513; /* SaddleBrown */
+        --secondary: #d2b48c; /* Tan */
+        --accent: #a52a2a; /* Brown */
+        --light: #f5f5dc; /* Beige */
+        --text: #333;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--light);
+        color: var(--text);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        padding: 30px 0;
+        border-bottom: 2px dashed var(--accent);
+      }
+
+      h1 {
+        color: var(--accent);
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .menu-section {
+        margin: 40px 0;
+      }
+
+      .section-title {
+        background-color: var(--primary);
+        color: white;
+        padding: 10px 15px;
+        font-size: 1.5rem;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .section-title span:first-child {
+        margin-right: 10px;
+      }
+
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px dotted var(--secondary);
+      }
+
+      .item-name {
+        flex: 2;
+        font-weight: 600;
+      }
+
+      .item-name-amharic {
+        font-style: italic;
+        color: #666;
+        font-size: 0.9em;
+      }
+
+      .item-prices {
+        flex: 1;
+        text-align: right;
+        min-width: 150px;
+      }
+
+      .price-column {
+        display: inline-block;
+        width: 60px;
+        text-align: center;
+      }
+
+      .price-header {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .divider {
+        text-align: center;
+        margin: 30px 0;
+        color: var(--accent);
+        font-size: 1.5rem;
+      }
+      .price-category {
+          display: flex;
+          flex-direction: column;
+          align-items: end;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 30px 0;
-            border-bottom: 2px dashed var(--accent);
-        }
-        
-        h1 {
-            color: var(--accent);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .menu-section {
-            margin: 40px 0;
-        }
-        
-        .section-title {
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 15px;
-            font-size: 1.5rem;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .section-title span:first-child {
-            margin-right: 10px;
-        }
-        
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+        border-top: 2px dashed var(--accent);
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      @media (max-width: 600px) {
         .menu-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px dotted var(--secondary);
+          /* flex-direction: column; */
+          justify-content: space-between;
         }
-        
-        .item-name {
-            flex: 2;
-            font-weight: 600;
-        }
-        
-        .item-name-amharic {
-            font-style: italic;
-            color: #666;
-            font-size: 0.9em;
-        }
-        
+
         .item-prices {
-            flex: 1;
-            text-align: right;
-            min-width: 150px;
+          text-align: left;
+          margin-top: 5px;
+          min-width: 40px;
         }
-        
+
         .price-column {
-            display: inline-block;
-            width: 60px;
-            text-align: center;
+          text-align: right;
+          display: block;
+          width: auto;
+          margin-top: 3px;
         }
-        
-        .price-header {
-            font-weight: bold;
-            margin-bottom: 5px;
+        .category {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
         }
-        
-        .divider {
-            text-align: center;
-            margin: 30px 0;
-            color: var(--accent);
-            font-size: 1.5rem;
+
+        .price-category {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: -7px;
         }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            border-top: 2px dashed var(--accent);
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        @media (max-width: 600px) {
-            .menu-item {
-                flex-direction: column;
-            }
-            
-            .item-prices {
-                text-align: left;
-                margin-top: 5px;
-            }
-            
-            .price-column {
-                text-align: left;
-                display: block;
-                width: auto;
-                margin-top: 3px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>Roniz Cafe</h1>
-            <p>📋 Full Menu / የምግብ ዝርዝር</p>
-        </header>
-        
-        <div class="divider">⸻</div>
-        
-        <!-- Pizza Section -->
-        <div class="menu-section">
-            <h2 class="section-title">
-                <span>🍕</span>
-                <span>Pizza / ፒዛ</span>
-            </h2>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Special Pizza
-                    <div class="item-name-amharic">ስፔሻል ፒዛ</div>
-                </div>
-                <div class="item-prices">
-                    <div class="price-header">
-                        <span class="price-column">Medium</span>
-                        <span class="price-column">Large</span>
-                    </div>
-                    <div>
-                        <span class="price-column">580</span>
-                        <span class="price-column">600</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Beef Pizza
-                    <div class="item-name-amharic">የላም ፒዛ</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">530</span>
-                    <span class="price-column">550</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Chicken Pizza
-                    <div class="item-name-amharic">የዶሮ ፒዛ</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">550</span>
-                    <span class="price-column">580</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Margarita Pizza
-                    <div class="item-name-amharic">ማርጋሪታ ፒዛ</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">500</span>
-                    <span class="price-column">530</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Tuna Pizza
-                    <div class="item-name-amharic">ቱና ፒዛ</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">500</span>
-                    <span class="price-column">530</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Veg Pizza
-                    <div class="item-name-amharic">ቫጅ ፒዛ</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">380</span>
-                    <span class="price-column">400</span>
-                </div>
-            </div>
+      <header>
+        <h1>Roniz Cafe</h1>
+        <p>📋 Full Menu / የምግብ ዝርዝር</p>
+      </header>
+
+      <div class="divider">⸻</div>
+
+      <!-- Breakfast Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>🍕</span>
+          <span>Breakfast / ቁርስ</span>
+        </h2>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Egg Sandwich
+            <div class="item-name-amharic">እንቁላል ሳንዱዊች</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">220</span>
+          </div>
         </div>
-        
-        <div class="divider">⸻</div>
-        
-        <!-- Sandwich Section -->
-        <div class="menu-section">
-            <h2 class="section-title">
-                <span>🥪</span>
-                <span>Sandwich / ሳንድዊች</span>
-            </h2>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Club Sandwich
-                    <div class="item-name-amharic">ክለብ ሳንድዊች</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">450</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Tuna Sandwich
-                    <div class="item-name-amharic">ቱና ሳንድዊች</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">400</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Vegetable Sandwich
-                    <div class="item-name-amharic">አትክልት ሳንድዊች</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">250</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Egg Sandwich
-                    <div class="item-name-amharic">እንቁላል ሳንድዊች</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">220</span>
-                </div>
-            </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Scrambled Egg
+            <div class="item-name-amharic">እንቁላል ፍርፍር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">180</span>
+          </div>
         </div>
-        
-        <div class="divider">⸻</div>
-        
-        <!-- Burger Section -->
-        <div class="menu-section">
-            <h2 class="section-title">
-                <span>🍔</span>
-                <span>Burger / በርገር</span>
-            </h2>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Double Burger
-                    <div class="item-name-amharic">ድብልቅ በርገር</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">500</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Special Burger
-                    <div class="item-name-amharic">ስፔሻል በርገር</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">400</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Normal Burger
-                    <div class="item-name-amharic">ኖርማል በርገር</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">350</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Cheese Burger
-                    <div class="item-name-amharic">ቺዝ በርገር</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">380</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Egg Burger
-                    <div class="item-name-amharic">እንቁላል በርገር</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">350</span>
-                </div>
-            </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Egg With Meat
+            <div class="item-name-amharic">እንቁላል በስጋ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">250</span>
+          </div>
         </div>
-        
-        <!-- Continue with all other sections following the same pattern -->
-        <!-- Juice, Cold Drinks, Milkshake, Snack, Breakfast, Hot Drinks, Lunch -->
-        
-        <div class="divider">⸻</div>
-        
-        <!-- Add-ons Section -->
-        <div class="menu-section">
-            <h2 class="section-title">
-                <span>➕</span>
-                <span>Add-ons / ተጨማሪ</span>
-            </h2>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Ketchup
-                    <div class="item-name-amharic">ኬችፕ</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">20</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Mayonnaise
-                    <div class="item-name-amharic">ማዮኔዝ</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">30</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Chili
-                    <div class="item-name-amharic">ቂጫ</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">20</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Pizza Box
-                    <div class="item-name-amharic">ፒዛ ሳጥን</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">30</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Burger Box
-                    <div class="item-name-amharic">በርገር ሳጥን</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">30</span>
-                </div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-name">
-                    Foil
-                    <div class="item-name-amharic">ፎይል</div>
-                </div>
-                <div class="item-prices">
-                    <span class="price-column">30</span>
-                </div>
-            </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Dirkosh frfr
+            <div class="item-name-amharic">ድርቆሽ ፍርፍር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">220</span>
+          </div>
         </div>
-        
-        <footer>
-            <p>Thank you for visiting! / እናመሰግናለን!</p>
-            <p>Open daily from 7:00 AM - 10:00 PM</p>
-        </footer>
+        <div
+          class="menu-item"
+          style="display: flex; justify-content: space-between"
+        >
+          <div class="item-name">
+            Chechebsa
+            <div class="item-name-amharic">ጨጨብሳ</div>
+          </div>
+          <div class="item-name-amharic category">
+            <div>Normal (ኖርማል)</div>
+            <div>Special (ስፔሻል)</div>
+          </div>
+          <div class="item-prices price-category">
+            <div class="price-column">180</div>
+            <div class="price-column">220</div>
+          </div>
+        </div>
+        <div
+          class="menu-item"
+          style="display: flex; justify-content: space-between"
+        >
+          <div class="item-name">
+            Fetira
+            <div class="item-name-amharic">ፈጢራ</div>
+          </div>
+          <div class="item-name-amharic category">
+            <div>Fasting (የጾም)</div>
+            <div>Normal (ኖርማል)</div>
+            <div>Special (ስፔሻል)</div>
+          </div>
+          <div class="item-prices price-category">
+            <div class="price-column">150</div>
+            <div class="price-column">180</div>
+            <div class="price-column">250</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider">⸻</div>
+
+      <!-- Lunch Section -->
+
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>🍕</span>
+          <span>Lunch / ምሳ</span>
+        </h2>
+        <div
+          class="menu-item"
+          style="display: flex; justify-content: space-between"
+        >
+          <div class="item-name">
+            Roniz combo
+            <div class="item-name-amharic">ሮኒዝ</div>
+          </div>
+          <div class="item-name-amharic category">
+            <div>Fasting (የጾም)</div>
+            <div>Non-Fasting (የፍስክ)</div>
+          </div>
+          <div class="item-prices price-category">
+            <div class="price-column">450</div>
+            <div class="price-column">700</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Sga Frfr
+            <div class="item-name-amharic">ስጋ ፍርፍር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">300</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Tibs Frfr
+            <div class="item-name-amharic">ጥብስ ፍርፍር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">330</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Quanta Firfir
+            <div class="item-name-amharic">ቋንጣ ፍርፍር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">350</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Pasta With Sauce
+            <div class="item-name-amharic">ፓስታ በስጎ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">220</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Pasta With Veg
+            <div class="item-name-amharic">ፓስታ ከአትክልት</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">230</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Pasta With Meat
+            <div class="item-name-amharic">ፓስታ በስጋ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">300</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Pasta With Tuna
+            <div class="item-name-amharic">ፓስታ በቱና</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">350</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Rice With Sauce
+            <div class="item-name-amharic">ሩዝ በስጎ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">250</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Rice With Veg
+            <div class="item-name-amharic">ሩዝ በአትክልት</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">270</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Rice With Meat
+            <div class="item-name-amharic">ሩዝ በስጋ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">330</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Rice With Tuna
+            <div class="item-name-amharic">ሩዝ በቱና</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">350</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Shro Feses
+            <div class="item-name-amharic">ሽሮ ፈሰስ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">180</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Shro Tegabino
+            <div class="item-name-amharic">ሽሮ ተጋቢኖ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">200</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Shro Bozena
+            <div class="item-name-amharic">ሽሮ ቦዘና</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">300</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Tomato Sls
+            <div class="item-name-amharic">ቲማቲም ስልስ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">180</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Salad
+            <div class="item-name-amharic">ሰላጣ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">180</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Mixed Salad
+            <div class="item-name-amharic">ሚክስድ ሰላጣ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">250</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Tuna Salad
+            <div class="item-name-amharic">ቱና ሰላጣ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">300</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Asa Goulash
+            <div class="item-name-amharic">አሳ ጉላሽ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">380</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Asa Cutlet
+            <div class="item-name-amharic">አሳ ኩትሌት</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">400</span>
+          </div>
+        </div>
+      </div>
+      <!-- Hot Drinks Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>�</span>
+          <span>Hot Drinks / ትኩስ መጠጦች</span>
+        </h2>
+        <div class="menu-item">
+          <div class="item-name">
+            Coffee
+            <div class="item-name-amharic">ቡና</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">50</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Tea
+            <div class="item-name-amharic">ሻይ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">35</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Milk
+            <div class="item-name-amharic">ወተት</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">65</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Macchiato
+            <div class="item-name-amharic">ማኪያቶ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">60</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Spriss
+            <div class="item-name-amharic">ስፕሪስ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">45</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Tea with Lemon
+            <div class="item-name-amharic">ሻይ በሎሚ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">50</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Special Tea
+            <div class="item-name-amharic">ስፔሻል ሻይ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">90</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Flavor Tea(Orange, Mango, Pineapple)
+            <div class="item-name-amharic">ፍሌቨር ሻይ(ብርትኳን, ማንጎ, አናናስ)</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">50</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Ginger Tea
+            <div class="item-name-amharic">ቀሽር ሻይ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">50</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Peanut Tea
+            <div class="item-name-amharic">ለውዝ ሻይ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">70</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Moringa Tea
+            <div class="item-name-amharic">ሞሪንጋ ሻይ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">50</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Green Tea
+            <div class="item-name-amharic">አረንጓዴ ሻይ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">50</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">
+            Fasting Macchiato
+            <div class="item-name-amharic">የጾም ማኪያቶ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">90</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pizza Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>🍕</span>
+          <span>Pizza / ፒዛ</span>
+        </h2>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Special Pizza
+            <div class="item-name-amharic">ስፔሻል ፒዛ</div>
+          </div>
+          <div class="item-prices">
+            <div class="price-header">
+              <span class="price-column">Medium</span>
+              <span class="price-column">Large</span>
+            </div>
+            <div>
+              <span class="price-column">580</span>
+              <span class="price-column">600</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Beef Pizza
+            <div class="item-name-amharic">ቢፍ ፒዛ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">530</span>
+            <span class="price-column">550</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Chicken Pizza
+            <div class="item-name-amharic">ቺክን ፒዛ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">550</span>
+            <span class="price-column">580</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Margarita Pizza
+            <div class="item-name-amharic">ማርጋሪታ ፒዛ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">500</span>
+            <span class="price-column">530</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Tuna Pizza
+            <div class="item-name-amharic">ቱና ፒዛ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">500</span>
+            <span class="price-column">530</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Veg Pizza
+            <div class="item-name-amharic">አትክልት ፒዛ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">380</span>
+            <span class="price-column">400</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider">⸻</div>
+
+      <!-- Sandwich Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>🥪</span>
+          <span>Sandwich / ሳንድዊች</span>
+        </h2>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Club Sandwich
+            <div class="item-name-amharic">ክለብ ሳንድዊች</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">450</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Tuna Sandwich
+            <div class="item-name-amharic">ቱና ሳንድዊች</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">400</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Vegetable Sandwich
+            <div class="item-name-amharic">አትክልት ሳንድዊች</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">250</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Egg Sandwich
+            <div class="item-name-amharic">እንቁላል ሳንድዊች</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">220</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider">⸻</div>
+
+      <!-- Burger Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>🍔</span>
+          <span>Burger / በርገር</span>
+        </h2>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Double Burger
+            <div class="item-name-amharic">ደብል በርገር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">500</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Special Burger
+            <div class="item-name-amharic">ስፔሻል በርገር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">400</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Normal Burger
+            <div class="item-name-amharic">ኖርማል በርገር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">350</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Cheese Burger
+            <div class="item-name-amharic">ቺዝ በርገር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">380</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Egg Burger
+            <div class="item-name-amharic">እንቁላል በርገር</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">350</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- /juice Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>🍔</span>
+          <span>Juice / ጁስ</span>
+        </h2>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Special Juice
+            <div class="item-name-amharic">ስፔሻል ጁስ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">180</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Avocado Juice
+            <div class="item-name-amharic">አቮካዶ ጁስ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">150</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Papaya Juice
+            <div class="item-name-amharic">ፓፓያ ጁስ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">140</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">
+            Spriss Juice
+            <div class="item-name-amharic">ስፕሪስ ጁስ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">160</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">Milk Shake</div>
+          <div class="item-prices">
+            <span class="price-column">220</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">Strawberry</div>
+          <div class="item-prices">
+            <span class="price-column">250</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="item-name">Chocolate Shake</div>
+          <div class="item-prices">
+            <span class="price-column">250</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- /Cold Drinks Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>🍔</span>
+          <span>Cold Drinks / ቀዝቃዛ መጠጦች</span>
+        </h2>
+
+        <div class="menu-item">
+          <div class="item-name">Soft Drinks</div>
+          <div class="item-prices">
+            <span class="price-column">60</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">1/2L Water</div>
+          <div class="item-prices">
+            <span class="price-column">30</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">1L Water</div>
+          <div class="item-prices">
+            <span class="price-column">40</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">2L Water</div>
+          <div class="item-prices">
+            <span class="price-column">50</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- /Snacks Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>🍔</span>
+          <span>Snack</span>
+        </h2>
+
+        <div class="menu-item">
+          <div class="item-name">
+            French Fries
+            <div class="item-name-amharic">ቺፕስ</div>
+          </div>
+          <div class="item-prices">
+            <span class="price-column">180</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Continue with all other sections following the same pattern -->
+      <!-- Juice, Cold Drinks, Milkshake, Snack, Breakfast, Hot Drinks, Lunch -->
+
+      <div class="divider">⸻</div>
+
+      <!-- Add-ons Section -->
+      <div class="menu-section">
+        <h2 class="section-title">
+          <span>➕</span>
+          <span>Add-ons / ተጨማሪ</span>
+        </h2>
+
+        <div
+          class="menu-item"
+          style="display: flex; justify-content: space-between"
+        >
+          <div class="item-name">Cheese</div>
+          <div
+            class="item-name-amharic category"
+          >
+            <div>Half</div>
+            <div>Full</div>
+          </div>
+          <div
+            class="item-prices price-category"
+            
+          >
+            <div class="price-column">50</div>
+            <div class="price-column">100</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">Ketchup</div>
+          <div class="item-prices">
+            <span class="price-column">20</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">Mayonnaise</div>
+          <div class="item-prices">
+            <span class="price-column">30</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">Chili</div>
+          <div class="item-prices">
+            <span class="price-column">20</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">Pizza Box</div>
+          <div class="item-prices">
+            <span class="price-column">30</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">Burger Box</div>
+          <div class="item-prices">
+            <span class="price-column">30</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="item-name">Foil</div>
+          <div class="item-prices">
+            <span class="price-column">30</span>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Thank you for visiting! / እናመሰግናለን!</p>
+        <p>Open daily from 7:00 AM - 9:00 PM</p>
+      </footer>
     </div>
-</body>
+  </body>
 </html>
