@@ -2,7 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="robots" content="noindex">
     <title>Roniz Cafe - Complete Menu</title>
     <style>
       :root {
@@ -175,6 +181,17 @@
     </style>
   </head>
   <body>
+    <noscript>
+  <style>
+    .menu-items {
+      display: block !important;
+      max-height: none !important;
+    }
+  </style>
+  <div class="error-message">
+    Please enable JavaScript to view this menu properly.
+  </div>
+</noscript>
     <div class="container">
       <header>
         <h1>Roniz Cafe</h1>
@@ -1035,30 +1052,50 @@
     </div>
 
     <script>
-      // Function to toggle section visibility
-      function toggleSection(sectionId) {
-        const section = document.getElementById(sectionId)
-        const title = document.querySelector(
-          `[onclick="toggleSection('${sectionId}')"]`
-        )
-
-        // Toggle collapsed class
-        section.classList.toggle('collapsed')
-        title.classList.toggle('collapsed')
-
-        // If not collapsed, set max-height to scrollHeight
-        if (!section.classList.contains('collapsed')) {
-          section.style.maxHeight = section.scrollHeight + 'px'
-        }
-      }
-
-      // Initialize all sections to be expanded by default
+      // Wait for DOM to be fully loaded
       document.addEventListener('DOMContentLoaded', function () {
-        const sections = document.querySelectorAll('.menu-items')
-        sections.forEach(section => {
-          // Set initial max-height
-          section.style.maxHeight = section.scrollHeight + 'px'
-        })
+        try {
+          // Initialize sections
+          const initSections = () => {
+            const sections = document.querySelectorAll('.menu-items')
+            sections.forEach(section => {
+              if (section) {
+                section.style.maxHeight = section.scrollHeight + 'px'
+              }
+            })
+          }
+
+          // Toggle function with error handling
+          const toggleSection = sectionId => {
+            try {
+              const section = document.getElementById(sectionId)
+              const title = document.querySelector(
+                `[onclick="toggleSection('${sectionId}')"]`
+              )
+
+              if (section && title) {
+                section.classList.toggle('collapsed')
+                title.classList.toggle('collapsed')
+
+                if (!section.classList.contains('collapsed')) {
+                  section.style.maxHeight = section.scrollHeight + 'px'
+                } else {
+                  section.style.maxHeight = '0'
+                }
+              }
+            } catch (e) {
+              console.error('Toggle error:', e)
+            }
+          }
+
+          // Make toggle function globally available
+          window.toggleSection = toggleSection
+
+          // Initialize on load
+          initSections()
+        } catch (e) {
+          console.error('Initialization error:', e)
+        }
       })
     </script>
   </body>
